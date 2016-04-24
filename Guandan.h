@@ -17,6 +17,7 @@ typedef struct PokerCard{
    	int Name;
 	int Kind;
 	int KingKind;
+	int SequenceNum;
 }CARD;
 
 enum CardName{
@@ -53,5 +54,7 @@ enum CardKingKind{
 	CardKingKindNum
 };
 
-void init_card(void);
+void init_cards(void);
+
+void shuffle_cards(CARD *t_cards[]);
 

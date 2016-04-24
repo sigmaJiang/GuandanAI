@@ -10,8 +10,7 @@
 
 CARD t_poker_card[CARDNUM];
 
-
-void init_card(void)
+void init_cards(void)
 {
     memset(t_poker_card, 0, sizeof(t_poker_card));
     int i;
@@ -25,6 +24,7 @@ void init_card(void)
 					t_poker_card[k].Name = i;
 					t_poker_card[k].Kind = j + 1;
 					t_poker_card[k].KingKind = DefaultKingKind;
+					t_poker_card[k].SequenceNum = k;
 					k++;
 				}
 				else{
@@ -32,22 +32,39 @@ void init_card(void)
 				    	t_poker_card[k].Name = Joker;
 					    t_poker_card[k].Kind = DefaultKind;
 					    t_poker_card[k].KingKind = k % 2 + 1;
+                        t_poker_card[k].SequenceNum = k;
                         k++;
                     }
 				}
 			}
 		}
 	}
-	for(i = 0; i < k; i++){
-		printf("%d %d %d \n", t_poker_card[i].Name, t_poker_card[i].Kind, t_poker_card[i].KingKind);
+}
+
+void shuffle_cards(CARD *t_card[])
+{
+    CARD temp;
+	int exc_num1, exc_num2;
+	int cnt = CARDNUM * 4;
+	while(cnt--){
+		exc_num1 = rand() % CARDNUM;
+		exc_num2 = rand() % CARDNUM;
+		temp = *t_card[exc_num1];
+		*t_card[exc_num1] = *t_card[exc_num2];
+		*t_card[exc_num2] = temp;
 	}
-	//printf("k = %d\n", k);
 }
 
 int main(void)
 {
-	init_card();
+	init_cards();
 
+    shuffle_cards(t_poker_card);
+    int i;
+    for(i = 0; i < CARDNUM; i++){
+		printf("%d %d %d %d \n", t_poker_card[i].Name, t_poker_card[i].Kind, t_poker_card[i].KingKind, t_poker_card[i].SequenceNum);
+
+	}
 
 	return 0;
 }
