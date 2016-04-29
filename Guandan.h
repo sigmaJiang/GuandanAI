@@ -13,6 +13,8 @@
 #include <time.h>
 
 #define CARDNUM 108
+#define PLAYERNUM 4
+#define HANDCARDMAX 27
 
 typedef struct PokerCard{
    	int Name;
@@ -55,7 +57,34 @@ enum CardKingKind{
 	CardKingKindNum
 };
 
+enum RoundResult{
+	DefaultResult,
+	LoseGame,
+	WinGame
+};
+
+enum Tribute{
+	DefaultTribute,
+	TributeSend,
+	TributeReceive
+};
+
+typedef struct GDPlayer{
+	char name[64];
+	int seat;
+	CARD hand_cards[HANDCARDMAX];
+	int LastRoundResult;
+	int Tributary;
+}PLAYER;
+
+typedef struct ScoreIndicator{
+	int partnerA;
+	int partnerB;
+	int round;
+}SCOREIND;
+
 void init_cards( CARD t_cards[]);
 
 void shuffle_cards( CARD t_cards[]);
 
+void deal_cards(CARD t_cards[], PLAYER *t_player1, PLAYER *t_player2, PLAYER *t_player3, PLAYER *t_player4);
