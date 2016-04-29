@@ -2,7 +2,7 @@
  *
  * GuandanAI 1.0 Created by SigmaJ, in 2016.04.20.
  *
- *
+ * v1.1 add shuffle function, in 2016.04.29
  * 
  * ***************************************************************************/
 
@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 #define CARDNUM 108
 
@@ -54,7 +55,7 @@ enum CardKingKind{
 	CardKingKindNum
 };
 
-void init_cards(void);
+void init_cards( CARD t_cards[]);
 
-void shuffle_cards(CARD *t_cards[]);
+void shuffle_cards( CARD t_cards[]);
 
